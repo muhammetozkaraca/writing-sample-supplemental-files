@@ -1,0 +1,803 @@
+---
+title: "Are Constitutionally Secular Countries More Robust to Religious Terrorism? Evidence from Cross-National Analyses and the Case of Turkey?^[This writing sample is based upon my master's thesis, which was submitted to the Political Science Department of Central European University in June 2021. The supplemental files for this sample can be found here: https://github.com/muhammetozkaraca/writing-sample-supplemental-files. The master's thesis also can be accessed here: https://muhammetozkaraca.com/master-thesis/thesis/]"
+subtitle: "Writing Sample"
+author: "Muhammet Özkaraca^[Email: muhammetozk@icloud.com. Website: https://muhammetozkaraca.com.]"
+header-includes:
+    - \usepackage{ragged2e}
+    - \usepackage{float}
+    - \usepackage{setspace}
+    - \usepackage{fancyhdr}
+    - \usepackage{lastpage}
+    - \usepackage{dcolumn}
+    - \usepackage{natbib}
+    - \usepackage{subcaption}
+    - \usepackage{rotating}
+    - \usepackage{placeins}
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output: 
+  bookdown::pdf_document2:
+    number_sections: true
+    toc: false
+bibliography: ["MAThesis-Proposal.bib"]
+nocite: |
+  "@zhuKableExtraConstructComplex2021", "@frederikRStudioAddinInsert2019", "@sandroVistimePrettyTimelines2021","@hlavacStargazerWellFormattedRegression2018"
+link-citations: true
+link-color: red
+urlcolor: blue
+biblio-style: apsr
+linestretch: 2
+ident: True
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(tinytex.verbose = TRUE)
+```
+
+```{=tex}
+\thispagestyle{empty}
+\spacing{1}
+```
+```{=tex}
+\begin{centering}
+{\bf Abstract}
+
+\end{centering}
+```
+$\qquad$ The emergence of the Islamic State and Salafi extremist organizations has once again thrust religious terrorism into the global spotlight. While numerous studies have delved into the origins and motivations of religious terror groups, very few have ever questioned whether constitutionally secular countries are particularly susceptible to religious terrorism. This cross-country study aims to address this question. By defining constitutionally secular countries as states not having recognized any official religion constitutionally, it argues that such states are more resilient in the face of religious terror incidents, primarily for two reasons. First, by fostering religious neutrality in society, where no faith is officially endorsed over others, there is a reduced incentive for religious groups to resort to violence in order to practice and protect their beliefs. This effectively curbs the breeding ground for potential extremist groups among moderate followers. Second, as the state refrains from upholding any specific faith, it prevents political authorities from oppressing citizens based on their religious beliefs. This allows all religious groups to participate in democratic decision-making processes as equal stakeholders, thereby diminishing the need for resorting to terrorism to protect their rights in the public sphere. To substantiate this assumption, I provide quantitative and qualitative evidences from various sources. After adjusting for the impact of secular constitutions on the occurrence of religious terror attacks using several confounding variables, the results of the negative binomial regression test corroborate the hypothesis that faith-based terrorism occurs less frequently in constitutionally secular countries. Furthermore, the case study of Turkey demonstrates how a secular constitution mitigates grievances extremists exploit to radicalize moderates and fosters faith-based groups' involvement in democratic decision-making processes. Given the substantial economic and human costs associated with religious terror attacks, the findings of this study provide essential insights into the realm of religious terrorism and offer crucial guidance on strategies to combat it.
+
+```{=tex}
+\newpage
+\spacing{2}
+```
+# Introduction
+
+$\qquad$ The 9/11 terrorist attacks, orchestrated by Al-Qaeda, shocked the world with their brutal assault on civilians. While terrorism wasn't a new concept for many scholars at the time, those studying Political Science and International Relations began paying close attention to religious terrorism following these attacks. The reason behind this heightened interest was shrouded in the methods and objectives of this new form of political violence that closely resembled the 9/11 strikes.
+
+$\qquad$ In contrast to previous waves of terrorism, this fresh wave had religious goals rooted in previously assumed vanishing religious values and traditions on a global scale. Religious terrorism began to gain momentum at a time when many scholars, influenced by long-standing secularization theory, predicted that religion's role in society would diminish as countries modernized and industrialized [@bellah_religious_1964; @parsons_1965_1966; @fenn_process_1970; @luckmann_structural_1979; @wilson_contemporary_1979; @tschannen_secularization_1991; @berger_sacred_2011]. However, the events witnessed in the latter part of the century seemed to contradict these predictions. While some countries progressed economically and appeared to adopt Western traits, religion's influence on social and political life remained strong. In some cases, developments such as the Iranian Islamic Revolution even bolstered the role of religion.
+
+$\qquad$ The 9/11 attacks serve as a prime example of a growing pattern of faith-based violence, marked by subsequent attacks and ultimately culminating in the emergence of the ISIS terrorist organization in recent times. Nonetheless, both the extensive body of terrorism studies and the literature on secularization theory have made little effort to explore the link between secularism and religious terrorism. In this context, this paper aims to address and bridge the gap in existing literature by investigating whether constitutionally secular countries are more resilient in the face of faith-based terrorism and, if so, how they achieve this resilience.
+
+$\qquad$ This study delves into the concept of constitutionally secular countries, defined as states where no religion is officially recognized in the constitution, to explore whether they exhibit greater resilience to religious terrorism. At its core, this research endeavors to trace the origins of religious involvement in acts of terrorism. Valuable insights are gleaned from the well-established inclusion and moderation thesis and are subsequently applied to unravel the nature of the purported relationship.
+
+$\qquad$ The origins of the inclusion and moderation thesis can be traced back to early 1910s debates concerning the transformation of extremist socialist parties into more representative structures [@michels_political_1966; @tepe_inclusion-moderation_2019]. This theory primarily hinges on the assumption that competitive democratic processes compel radical organizations to adopt moderate stances by granting them the means to defend their rights through democratic means, thereby reducing the inclination towards violent methods. Although this thesis has found application in various contexts [@nasr_democracy_1995; @wickham_path_2004; @schwedler_faith_2006; @somer_does_2011; @buehler_revisiting_2013; @jaffrelot_refining_2013; @al-anani_inclusion-moderation_2019], very few studies have attempted to apply it to religious terror groups.
+
+$\qquad$ The argument here posits that constitutionally secular countries exhibit religious neutrality toward all faiths. Religious neutrality denotes that the state refrains from favoring any particular belief system over others, thus adopting a neutral stance towards its citizens in this regard. Consequently, this situation reduces the necessity for resorting to violent means to safeguard religious practices, as the state apparatus will be indifferent, which, in turn, mitigates the potential for radical groups to emerge from within moderate ones.
+
+$\qquad$ Furthermore, as the state abstains from endorsing a specific religion above others, it prevents political authorities from oppressing citizens based on their religious beliefs. This facilitates the participation of all religious groups as equal stakeholders in democratic decision-making processes, thereby diminishing the incentive to resort to terrorism as a means to protect their rights in the public sphere. Consequently, constitutionally secular countries gain a significant advantage in deterring religious terrorism.
+
+$\qquad$ To substantiate the claim, I've adopted a mixed-methods research design that encompasses both quantitative and qualitative techniques. I obtained empirical data on the main dependent variable, which is the occurrence of religious terror attacks per year and their casualties, by merging the Global Terrorism Database (GTD) with the Extended Data on Terror Groups (EDTG). To account for the impact of being a constitutionally secular country on the occurrence of religious terror attacks and their casualties, I conducted negative binomial regression tests, considering several confounding variables. To bolster the reliability of the conclusions I derive from statistical tests and to grasp the causal mechanism better, I examined the case of Turkey. Turkey is renowned for its long-standing commitment to secularism, despite having a majority Muslim population.
+
+$\qquad$ In this regard, my research seeks to bridge a long-standing gap in understanding the relationship between secularism and religious terrorism. By scrutinizing whether the constitutionally secular countries are more robust to religious terrorism, I aim to inquire the advantages that constitutionally secular countries hold against religious terror groups. The conclusions I derive from this study contribute to the current body of knowledge by illustrating how constitutionally secular countries are better equipped to combat religious terror groups along with proposing potential strategies to deter them. In the following section, I will delve into the theoretical foundations of my study and review the existing literature on this subject.
+
+# Theoretical Conceptions and Analytical Framework
+
+$\qquad$ The purported theoretical framework on the idea of secularism as an antidote to religious terrorism is rooted in the well-established concept known as the "inclusion and moderation thesis." This theory has been prominently applied, particularly in the context of Islamic parties, as evidenced by various scholar [@nasr_democracy_1995; @wickham_path_2004; @schwedler_faith_2006; @somer_does_2011; @buehler_revisiting_2013; @jaffrelot_refining_2013; @al-anani_inclusion-moderation_2019]. While a handful of studies have also extended this theory to different contexts [@kalyvas_rise_1996; @kalyvas_commitment_2000; @lewis_inclusion-moderation_2019], its fundamental principles trace back to debates from the early 1910s concerning the transformation of extremist socialist parties into more representative entities [@michels_political_1966; @tepe_inclusion-moderation_2019]. At its core, the inclusion and moderation thesis hinges on the idea that competitive democratic processes act as a constraint on extremist ideologies, causing radical organizations to adopt more compromising stances. Consequently, when fundamentalist parties participate in elections, the theory suggests that political mechanisms and concessions compel them to move away from the extreme ends of the political spectrum, positioning these parties in more mainstream positions that appeal to larger segments of the population [@tepe_inclusion-moderation_2019]. Despite longstanding criticisms of this theory, it has generated significant interest due to its application in various contexts, including processes of democratization [@huntington_third_1993]. However, its application to the realm of religious terrorism remains relatively unexplored within the existing literature.
+
+$\qquad$ Drawing upon the core tenets of the inclusion and moderation thesis, it is contended that constitutionally secular countries ensure religious groups a state of religious neutrality. This neutrality enables these groups to practice their beliefs and lead their lives in accordance with their faith without encountering discrimination. Consequently, this scenario negates the need for any religious organization to resort to political violence, whether to safeguard its way of life or to practice its faith. The absence of this necessity ultimately hampers the potential for extremist groups to manipulate moderates and garner support for violent actions under the guise of protecting sacred norms and practices.
+
+$\qquad$ Furthermore, in constitutionally secular states where no belief is given preferential treatment, the risk of religious discrimination by political authorities is mitigated. This enables all religious groups to participate in democratic decision-making processes on equal footing. With no religious sect enjoying privileged status and everyone being equal before the law, regardless of their religious beliefs, this fosters inclusion of all segments of society in democratic decision-making. Discrimination based on faith-based convictions lessens, allowing groups to advocate for and advance their rights through democratic channels. Consequently, this facilitates the resolution of potential conflicts through democratic means and confers a significant advantage to constitutionally secular countries in curbing religious terrorism. Figure \ref{fig:scheme} illustrates the proposed mechanism in this context.
+
+```{=latex}
+\begin{figure}[h]
+```
+```{r scheme, echo=FALSE, fig.align='center', out.width = '100%', fig.pos="H"}
+
+knitr::include_graphics("/Users/muhammetozkaraca/Desktop/PhD Application Package/Writing-Sample/supplemental-files/plots/causal-mechanism.png")
+
+```
+
+```{=latex}
+\caption{The Operational Mechanism \label{fig:scheme}}
+\raggedright\textit{Source}: See text.
+\end{figure}
+```
+\newpage
+
+$\qquad$ It is important to acknowledge that, while the original inclusion and moderation thesis posits that electoral considerations are the primary driver for extremist groups to moderate [@yadav_understanding_2010; @tepe_inclusion-moderation_2019], the mechanism proposed in this study suggests that constitutional religious neutrality serves as a deterrent to potential extremists, effectively undermining the conditions that foster extremism and violence. Therefore, rather than relying solely on electoral incentives, this argument asserts that the constitutional neutrality extended to all religious factions is adequate to discourage religious violence. In an environment where no religious group feels compelled to resort to violence to safeguard its rights, the potential breeding ground for extremism is constrained, thereby averting religious terrorism.
+
+$\qquad$ This framework is based on several crucial assumptions. Firstly, in alignment with Hoffman [-@hoffman_inside_2006], it is assumed that terrorism is fundamentally a political act. This assumption is pivotal to the proposed process, as it postulates that actors engaged in religious acts of terror are driven by political motivations, aiming to increase their visibility in the public sphere and negotiate with authorities to achieve politically oriented objectives. In other words, while religion may significantly influence their motivations, it is contended that the actions of religious terrorist organizations are primarily politically motivated, seeking to secure concessions required to protect their distinct way of life. Consequently, their positions within their communities are reinforced when religious oppression occurs in the public sphere, as these acts may provide justifications for individuals to resort to violence in public arenas in pursuit of concessions needed to safeguard their unique way of life.
+
+$\qquad$ In addition to the aforementioned premise, it is asserted that constitutionally secular countries offer religious neutrality to all segments of society, allowing them to practice their faith freely. While the concept of a secular country is discussed here in a unified manner, it is worth noting that the literature presents various forms of secularism, each with distinct interpretations and levels. In this context, Dobbelaere [-@dobbelaere_secularization_2004] and Roberts and Yamane [-@roberts_religion_2016] categorize these forms of secularism into three levels: society and language at the macro-level, the state's organization at the mezzo-level, and individual beliefs at the micro-level. The choice of adopting the mezzo-level approach in this study is primarily motivated by the mechanism outlined in Figure \ref{fig:scheme} above. Thus, the primary analytical unit for examining secularism in this study is the state level.
+
+$\qquad$ Regarding the specific type of secularism employed in this study, a passive secularism definition is operationalized. This definition assumes that countries officially refrain from recognizing any religion do not interfere with religious affairs, aligning with the coding used in the RAS dataset [@kuru_passive_2007; @kuru_analyzing_2009].
+
+$\qquad$ Although it might be argued that excessive forms of secularism might envy religious practices and become an impediment to the integration of heterogeneous societies [@adida_muslims_2014; @freedman_secularism_2004], to the best of the knowledge, there is no previous demonstrated link between the exclusionary version of secularism and any type of terrorism, including but not limited to religious terrorism along with no available dataset exists to test this hypothesis until now.
+
+$\qquad$ It should also be noted that the asserted mechanism only extends to cases where the aforementioned assumptions explored in detail above exist. Recalling the first assumption that terrorism is a political act, the asserted causal mechanism cannot be operationalized in contexts where terror acts are utilized for non-political gains. To exemplify this in the context better, Piazza [-@piazza_opium_2012] finds that opium production is a more reliable predictor of terror actions compared to other potential causes in the case of Afghanistan after controlling the impact of economic development, infrastructure, geography and security. Therefore, in this context, as the terror actions merely are not politically driven , the asserted mechanism cannot be generalizable.
+
+$\qquad$ Furthermore, in cases where external factors play important roles through the involvement of parties, the mechanism also cannot be operationalized as in these circumstances, religious terror activities do not originate solely from the high tensions between local people whose faiths are surpassed and the central political authorities. Contrary to that, such cases might involve the manipulation of terror groups by third parties for the sake of political or economic gains [@reuveny_afghanistan_1999; @findley_rethinking_2006; @johnson_understanding_2007; @attewell_factory_2018]. Cases like Afghanistan, in which external parties are involved in the conflicts are good examples for that.
+
+$\qquad$ To summarize, this part delves into the conceptual framework of this study in detail by referencing the study's major assumptions. The following chapter will examine the principles of prospective research design in order to assess the validity of the process described in this section.
+
+# Research Design {#research-design}
+
+$\qquad$ On the basis of the purported scheme discussed in detail in the previous section, this part will focus on the research design of this study. The dependent variable is the total number of religious terror attacks and the overall number of people killed by these attacks for a given country in the years between 1970 and 2019. The main reason behind using both the number of terror attacks and the overall number of people killed by these attacks is related to the possibility that while the total number of attacks in a given year might be high, the causalities of these attacks can be low and vice versa. Given that focusing on conclusions derived from only one of the two might lead to biased conclusions in such cases, it is thought that it is more reliable to consider both indicators concurrently.
+
+$\qquad$ Therefore, to detect these numbers, religious terror groups are primarily derived from the "Extended Data on Terrorist Groups (EDTG)" dataset [-@hou_introducing_2020], which classifies terrorist organizations' ideological motivations according to perpetrator groups' political stance based on the convention of Jones and Libicki [-@jones_how_2008]. In this regard, there are two essential reasons to employ the EDTG dataset in this study. First, it is the largest dataset, to the best of the knowledge, that classifies terror groups according to their ideological perspective. Furthermore, while this dataset includes groups that ceased their operations or maintained to function between 1970 and 2016, as another convenient feature, the EDTG data is tied to the Global Terrorism Database (GTD) [-@noauthor_global_2020], which is the most comprehensive dataset, to the best of the knowledge, with regard to listing all particular terror events along with their details, such as the number of causalities and exact coordinates of attacks. This allows to observe the specific events that were perpetrated by the religious terror groups coded in the EDTG dataset. Thus, as the dependent variable for this study, the intensity of religious terrorism is calculated by inspecting the frequency of attacks and the overall number of people killed as a result of these incidents for every country in a given year between 1970 and 2019.
+
+$\qquad$ The primary independent variable in this study is whether a country's constitution is secular or not. To ascertain this, the Religion and State (RAS 3) dataset [-@fox_secularreligious_2016] is employed, encompassing all religious regulations embedded within the constitutions of 117 countries spanning the years 1990 to 2014. Specifically, this study utilizes the *Separation of Religion and State* variable from the RAS 3 dataset. This variable scrutinizes constitutionally recognized religious clauses across countries and categorizes them into three-level scales. The *Separation of Religion and State* variable is coded as follows: 0: "The State has no oﬀicial religion," 1: "The State has multiple established religions," 2: "The State has one established religion." Countries that officially establish religions in their constitutions are categorized as non-secular countries, whereas countries with no officially recognized religion are defined as secular.
+
+$\qquad$ In addition to employing the *Separation of Religion and State* variable as the primary independent variable, this study also incorporates *Restrictions on Religious Political Parties* variable from the RAS 3 dataset into the analysis. This variable assesses states' legal constraints on religious political parties, encompassing four distinct levels of restriction: 0: "No restrictions," 1: "Slight restrictions including practical restrictions or the government engages in this activity rarely and on a small scale," 2: "Significant restrictions including practical restrictions or the government engages in this activity occasionally and on a moderate scale," 3: "The activity is illegal or the government engages in this activity often and on a large scale."
+
+$\qquad$ This research employs several additional variables to enhance the robustness of the underlying claim. Building upon prior studies that examine the influence of economic poverty on terrorism [@krueger_education_2003; @abadie_poverty_2006; @piazza_rooted_2006; @piazza_poverty_2011], this study controls for the economic status of countries using the Logged GDP per Capita variable, obtained from the World Bank Databank [-@noauthor_databank_2021]. In alignment with Piazza's approach [-@piazza_incubators_2008], to consider state capacities and the role of military power, the study incorporates the World Bank's [-@noauthor_databank_2021] *Military Spending* variable and the State Fragility Index (2018), which range from 0 (No Fragility) to 25 (Extreme Fragility), are used.
+
+$\qquad$ Given previous discussions concerning the conditioning effect of political regimes on terrorism [@eubank_does_1994; @li_does_2005; @chenoweth_terrorism_2013; @magen_fighting_2018; @bogaards_kinder_2020], this research also examines the impact of countries' democratic levels on religious terrorism. It does so by utilizing the Polity V dataset's [-@marshal_polity5_2020] *Combined Polity Score*, which is determined by subtracting countries' autocracy scores from their democracy scores, with values ranging from -10 (Strongly Democratic) to +10 (Strongly Autocratic).
+
+$\qquad$ To assess the applicability of the study's results within the context of Muslim-majority countries, the data is subsetted to include only such nations. It should be noted that, as of my last knowledge update, no comprehensive longitudinal dataset specifying countries' population distribution in terms of religious preferences is available. Consequently, the study includes only those countries that are members of the Organization for Islamic Cooperation, totaling 57 nations. The ensuing section will present the results of the empirical investigations.
+
+# Empirical Investigation
+
+## Geographical distribution of Religious Terror Groups
+
+$\qquad$ In this section, the results of the preliminary analysis are illustrated. The main goal is to explore the geographical distribution of religious terror groups' base country together with the frequency and lethality of their attacks. In line with the coding criteria at the EDTG, a base country is defined as the place, where the group originated from. While, according to the EDTG criteria, one group can have more than one base country, the results demonstrated in this study takes note of this situation and aggregates such cases cumulatively. To this end, 203 distinct groups originating from 58 different countries are detected.[^1] Also it should be noted that although the EDTG codes "People's Liberation Army of Kurdistan (ARGK)" as a religious terror organization, no evidence was found to support this claim. The author of this paper contacted with the EDTG's owners and they also confirmed this error. Nonetheless, to be consistent with the chosen research design, the group is not dropped from the data. Thus, the Figure \@ref(fig:rt-groups) illustrates the spatial spread of religious terror groups' base countries identified in the EDTG dataset.
+
+[^1]: Note that the "base" columns for two organizations are updated to "Palestine" instead of "West Bank/Gaza" in the original dataset in accordance with the availability of geographical location data.
+
+\FloatBarrier
+```{r rt-groups, fig.cap = "Number of Religious Terror Groups in Each Country", results='asis', warning=FALSE,echo=FALSE,message=FALSE, fig.pos="H", out.height = '95%', out.width = '95%'}
+
+library(tidyverse)
+library(readxl)
+library(viridis)
+library(ggtext)
+
+setwd("/Users/muhammetozkaraca/Desktop/PhD Application Package/Writing-Sample/supplemental-files/datasets")
+
+edtg_data <- readxl::read_excel("/Users/muhammetozkaraca/Desktop/PhD Application Package/Writing-Sample/supplemental-files/datasets/EDTG_Data.xls") %>%
+  filter(rel == 1) %>%
+  separate(col = base,
+           into = c("base1","base2","base3","base4",
+                                                   "base5","base6","base7","base8",
+                                                   "base9","base10"),
+           sep = ",")
+
+
+groups_names  <- distinct(edtg_data , gname, .keep_all = FALSE) # 203 groups exist in
+countries <- edtg_data %>%  pivot_longer(cols = starts_with("base"),  
+                                         names_to = "origins", values_to = "countries",
+                                         values_drop_na = TRUE) %>%
+  dplyr::select("countries") 
+
+
+base_countries <- distinct(countries, countries, .keep_all = FALSE)
+
+countries <- countries %>% 
+  group_by(countries) %>%
+  dplyr::summarise(freq = n())
+
+countries <- as.data.frame(countries)
+countries$countries[7] <- "Democratic Republic of the Congo"
+countries$countries[53] <- "USA"
+countries$countries[57] <- "Palestine"
+
+world <- map_data("world")
+countries_geocodes <- map_data("world", region = countries$countries)
+
+
+names(countries)[1] <- "region"
+geocoded_countries <- left_join(countries_geocodes, countries, by = "region") 
+
+
+ggplot() +
+  geom_polygon(data = world, aes(x = long, y = lat, group = group), fill="#69b3a2", alpha = 0.7)+
+  geom_polygon(data = geocoded_countries, aes(x = long, y = lat, group = group, fill = freq))+
+  scale_fill_viridis(name = "Numbers") +
+  scale_color_viridis(discrete = TRUE, option = "D") +
+  theme_void()+
+  #labs(caption = "*Source*: The author's own compilation based on the Extended Data on Terrorist Groups (2020)",
+  #     title = "Number of Religious Terror Groups in Each Country") +
+  theme(
+    axis.title.x=element_blank(),
+    axis.text.x=element_blank(),
+    axis.ticks.x=element_blank(),
+    axis.title.y=element_blank(),
+    axis.text.y=element_blank(),
+    axis.ticks.y=element_blank(),
+    legend.position = c(0.95,0.57), 
+    plot.title = element_text(hjust = 0.5),
+    legend.background = element_rect(color = NA),
+    legend.title = element_text(color="gray35"),
+    legend.text = element_text(color="gray35"),
+    legend.key = element_rect(),
+    plot.caption = element_markdown(hjust = 0)) 
+```
+\FloatBarrier
+
+$\qquad$ Several striking patterns are revealed by the analysis of this graph. Most notably, the absence of religious terror organizations originating in Latin America is observed, while the Middle East and North Africa are seen as densely populated regions in this regard. Additionally, Pakistan is identified as the epicenter for religious terror organizations, with a staggering total of 560 such groups being operated within its borders. Moreover, when Asian nations are examined as a whole, it is generally found that, with the exception of the southern part of the continent, a lower presence of religious terror groups is demonstrated. Consequently, from a comprehensive standpoint, it can be asserted that there is no specific geographical location or religious belief system that is particularly conducive to the proliferation of religious terror organizations. However, it should be noted that some regions may be more vulnerable to the activities of such groups than others.
+
+$\qquad$ Following the examination of the geographical distribution of religious terror organizations, an investigation is proceeded with regards to the frequency and lethality of the specific attacks carried out by these groups. To achieve this, connections are established between the EDTG and the GTD by cross-referencing the names of 203 religious terror groups obtained from the EDTG with the GTD dataset. It is important to note that the GTD may contain cases where one attack is attributed to multiple groups, and as such, such cases are accounted for cumulatively in our analysis.
+
+$\qquad$ After the matching of the EDTG with the GTD and data cleaning, a total of 187 groups are identified. Using the names of these groups, the entire GTD dataset is subsetted to extract information on relevant attack dates, geographical locations, and casualty figures. Consequently, the spatial and temporal distributions of religious terror activities carried out by these organizations between 1970 and 2019 are illustrated by Figure \@ref(fig:rt-attacks). It is worth mentioning that some attack locations lack precise longitude and latitude coordinates in the original GTD data and are therefore not depicted on the following map. Nevertheless, these incidents will be included in our subsequent statistical analyses. Additionally, it should be noted that the size of the points on the map corresponds to the number of fatalities in each attack, providing a visual representation of the severity of each incident.
+
+\FloatBarrier
+```{r rt-attacks, fig.cap = "Religious Terror Attacks Worldwide (1970-2019)", results='asis', warning=FALSE,echo=FALSE,message=FALSE, fig.pos="H", out.height = '95%', out.width = '95%'}
+library(tidyverse)
+library(readxl)
+library(viridis)
+library(ggtext)
+library(fuzzyjoin)
+library(ggthemes)
+
+edtg_data <- readxl::read_excel("/Users/muhammetozkaraca/Desktop/PhD Application Package/Writing-Sample/supplemental-files/datasets/EDTG_Data.xls") %>%
+  filter(rel == 1)
+gtd_data <- readxl::read_excel("/Users/muhammetozkaraca/Desktop/PhD Application Package/Writing-Sample/supplemental-files/datasets/GTD(2019).xlsx")
+
+gtd_data <- gtd_data %>%
+  pivot_longer(cols = c("gname", "gname2", "gname3"),
+               names_to = "type", values_to = "gname")
+
+
+group_names_gtd <- distinct(gtd_data, gname, .keep_all = FALSE)
+group_names_gtd <- as.data.frame(group_names_gtd)  
+
+
+group_names_edtg <- distinct(edtg_data, gname, .keep_all = FALSE) # EDTG Rel. Terror Groups Names                         
+group_names_edtg <- as.data.frame(group_names_edtg)               # convert the names into dataframe 
+
+index1 <- which(gtd_data$gname %in% group_names_edtg$gname)  # Subset GTD data based on edtg's groups
+
+gtd_rel_ter_events <- gtd_data[index1,]                      # Finding the specific events
+
+gtd_rel_ter_group_names <- unique(gtd_rel_ter_events$gname)  # List the names of RT groups in GTD
+gtd_rel_ter_group_names <- as.data.frame(gtd_rel_ter_group_names)    # Make it dataframe
+names(gtd_rel_ter_group_names) [1] <- "gname"
+
+diff_before <- setdiff(group_names_edtg,gtd_rel_ter_group_names)
+
+# Based on the EDTG Data where 203 groups indicated, the GTD has only 153 different coded data. 
+# To figure out whether the differences are due to the punctuation problems or something related,
+# I want to find out how similar the groups names in the GTD and in the EDTG datasets are.
+
+final_result <- stringdist_join(group_names_gtd, group_names_edtg, by = "gname",
+                                mode = "left", ignore_case = FALSE,
+                                method = "jw",
+                                max_dist = 99, distance_col = "dist") %>% 
+  group_by(gname.x) %>%
+  slice_min(order_by = dist, n = 1)
+
+final_result$dist <- 1 - final_result$dist
+most_similar <- final_result %>% 
+  filter(dist > 0.7) %>% 
+  filter (dist < 1)
+
+# After checking the similarity statistics between the two columns one by one,
+# I the fixed the groups names in the original EDTG data in line with the punctuation problems 
+# I found out in between the GTD and the EDTG. 
+# Now, I reload the tidied data into R environment.
+
+# write_xlsx(most_similar, 'most_similar.xlsx')
+
+tidied_edtg_base <- readxl::read_excel('/Users/muhammetozkaraca/Desktop/PhD Application Package/Writing-Sample/supplemental-files/datasets/EDTG-tidied.xlsx')
+tidied_edtg_names <- tidied_edtg_base$gname
+tidied_edtg_names <- as.data.frame(tidied_edtg_names)
+
+index2 <- which(gtd_data$gname %in% tidied_edtg_base$gname)     # Subset GTD data based on edtg's groups
+rt_events_gtd2 <- gtd_data[index2,]                             # Finding the specific events
+
+# write_xlsx(rt_events_gtd2, 'religious_terror_attacks_dataset.xlsx')
+
+rt_groups_names_gdt2 <-unique(rt_events_gtd2$gname)             # List the names of RT groups
+rt_groups_names_gdt2 <- as.data.frame(rt_groups_names_gdt2) 
+
+#write_xlsx(rt_events_gtd_names_dt2, 'edteg-gtd.xlsx')
+names(tidied_edtg_names) [1] <- "gname"
+names(rt_groups_names_gdt2) [1] <- "gname"
+
+diff_after <- setdiff(tidied_edtg_names$gname,rt_groups_names_gdt2$gname)
+diff_names_df_after <- as.data.frame(diff_after)
+
+
+rt_events_gtd2_table <- rt_events_gtd2 %>%
+  as.data.frame() %>%
+  dplyr::select(gname,nkill) %>%
+  group_by(gname) %>%
+  dplyr::summarise(number_of_attacks = n(),
+                   number_of_murdered = sum(nkill, na.rm=TRUE)) %>%
+  dplyr::select (gname,number_of_attacks,number_of_murdered) %>%
+  rename ("Names" = "gname", "Number of Attacks" = "number_of_attacks", 
+          "Number of Killed People" = "number_of_murdered")
+
+
+rt_events_gtd2$period[rt_events_gtd2$iyear > 1969  & rt_events_gtd2$iyear < 1980] = "1970-1979"
+rt_events_gtd2$period[rt_events_gtd2$iyear > 1979  & rt_events_gtd2$iyear < 1990] = "1980-1989"
+rt_events_gtd2$period[rt_events_gtd2$iyear > 1989  & rt_events_gtd2$iyear < 2000] = "1990-1999"
+rt_events_gtd2$period[rt_events_gtd2$iyear > 1999  & rt_events_gtd2$iyear < 2010] = "2000-2009"
+rt_events_gtd2$period[rt_events_gtd2$iyear > 2009  & rt_events_gtd2$iyear < 2020] = "2010-2019"
+
+
+# Build the map
+
+mybreaks <- c(25, 50, 100, 200, 400, 600, 1200)
+# summary(rt_events_gtd2$nkill)
+# hist(rt_events_gtd2$nkill)
+
+world <- map_data("world")
+
+rt_events_gtd2 %>%
+  arrange(nkill) %>% 
+  mutate(eventid=factor(eventid, unique(eventid))) %>% 
+  ggplot() +
+  geom_polygon(data = world, aes(x=long, y = lat, group = group), fill="#69b3a2", alpha = 0.7) +
+  geom_point(data = rt_events_gtd2, aes(x=longitude, y=latitude), color = "red", alpha = 0.05) +
+  # geom_point(data = rt_events_gtd2, aes(x=longitude, y=latitude, size=nkill), color = "red", alpha = 0.2) + 
+  # scale_size_continuous(range=c(1,12), breaks=mybreaks) +
+  # scale_alpha_continuous(range=c(0.1, .9), breaks=mybreaks) +
+  # scale_color_viridis(option="viridis", breaks=mybreaks, name = "Number of Killings") +
+  theme_map() +
+  # guides(colour = guide_legend()) +
+  labs(title = "") +
+  theme(legend.position = "none",
+        text = element_text(color = "#22211d"),
+        plot.title = element_text(hjust=0.5, vjust = 0.75)) +
+  facet_wrap(~`period`)
+
+```
+
+\FloatBarrier
+
+$\qquad$ These graphs reveal several noteworthy trends. First, as noted by previous authors [@juergensmeyer_terror_2003; @gregg_defining_2014; @rapoport_terrorism_2017], religious terrorism is gaining increasing momentum on the global stage. While the number of similar assaults and the scale of casualties in the 1970s were relatively modest, Figure 3 illustrates how the frequency and lethality of religious terror acts have escalated over time, reaching their zenith in the previous decade.
+
+$\qquad$ Additionally, akin to Figure \@ref(fig:rt-groups), which portrays the geographical distribution of countries serving as bases for religious terror groups, Figure \@ref(fig:rt-attacks) highlights that these attacks are predominantly concentrated in the regions of the Middle East, North Africa, and Southeast Asia, while Latin America and North America are mostly deprived of religious terror incidents. Nevertheless, the magnitude of the 9/11 attacks still stands out in terms of the number of fatalities, when compared to other incidents. Interestingly, Figure \@ref(fig:rt-attacks) also underscores a rising trend of religious terror incidents across the African continent. While the continent was largely spared from such attacks during the 1970s, it has followed the global trend, with religious terrorism gradually becoming more prevalent. In the last decade, these attacks on the continent have clustered in three specific geographical areas: the northern part, encompassing Libya and Egypt; the African Horn; and the western division.
+
+$\qquad$ An additional inquiry involves comparing the status of countries as secular or non-secular and their experience with religious terror attacks. To clarify, countries officially recognizing one or more religions are categorized as non-secular, while those that do not are considered secular. Figure \@ref(fig:types-of-constitutions) has been created to examine the correlation between the official religious status of countries' constitutions and the incidence of attacks, as well as the number of casualties resulting from these incidents.
+
+\FloatBarrier
+```{r types-of-constitutions, fig.cap = "Secular/Non-Secular Countries vs. Religious Terrorism", results='asis', warning=FALSE,echo=FALSE,message=FALSE, fig.pos="H", out.height = '75%', out.width = '90%'}
+library(patchwork)
+
+
+data_analysis <- readxl::read_excel('/Users/muhammetozkaraca/Desktop/PhD Application Package/Writing-Sample/supplemental-files/datasets/untidy_final.xlsx')
+
+data_analysis <- data_analysis %>%
+  mutate(secular_or_not = case_when(secular_constitution == 0 ~ 1,
+                                    secular_constitution == 1 ~ 0,
+                                    secular_constitution == 2 ~ 0,
+                                    secular_constitution == NA ~ NA))
+
+p1 <- ggplot(data = data_analysis %>% filter(!is.na(secular_or_not)),
+             aes(x = as.factor(secular_or_not), y = number_of_attacks, color = secular_or_not, alpha = 0.05)) +
+  geom_jitter() +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Not Constitutionally\nSecular Countries", "Constitutionally\nSecular Countries")) +
+  labs(title = "Annual Number of RT Attacks based on the\nCountries' Constitution Types (1970-2019)", 
+       x = "",
+       y = "Number of Attacks") +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5, size = 7)) 
+
+
+p2 <- ggplot(data = data_analysis %>% filter(!is.na(secular_or_not)),
+             aes(x = as.factor(secular_or_not), y = total_killed, color = secular_or_not, alpha = 0.05)) +
+  geom_jitter() +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Not Constitutionally\nSecular Countries", "Constitutionally\nSecular Countries")) +
+  labs(title = "Annual Number of People Killed in RT Attacks based on the\nCountries' Constitution Types (1970-2019)", 
+       x = "",
+       y = "Number of People Killed in the Attacks") +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5, size = 7)) 
+
+p1 + p2
+```
+
+\FloatBarrier
+
+$\qquad$ From Figure \@ref(fig:types-of-constitutions), it is evident that constitutionally secular countries are less exposed to religious terror attacks, resulting in fewer casualties compared to non-secular nations. Notably, there are instances where non-secular countries have faced an annual tally of over 250 religious terror attacks. Consequently, these non-secular countries have witnessed a higher number of casualties as a result of religious terrorism, reaching more than 1000 people annually between 1970 and 2019. It is crucial to highlight the 9/11 attacks as a significant exception to this trend, where nearly 3000 lives were lost.
+
+$\qquad$ After giving an overall look at the religious terror groups' base countries, elaborating on the spatial and temporal distributions of the attacks and offering a basic comparison between the secular and non-secular countries vis-à-vis religious terrorism, the following section demonstrates the results of the statistical tests conducted to analyze the effect of constitutionally secular norms on the number of religious terror acts and their causalities, while controlling for the confounding variables described in [the section 3.](#research-design)
+
+## Large-N Analyses
+
+$\qquad$ Following the preliminary analysis conducted in the previous section, a more extensive examination of the statistical tests and their corresponding results will be provided in this part. The primary objective is to test whether there is a statistically significant impact of being constitutionally secular country on the prevalence of religious terrorism. To that end, a Welch-Analysis of Variance (ANOVA) test will be carried out to determine whether there is a statistically significant difference between being a constitutionally secular country or not with regards to experiencing religious terrorism. Subsequently, negative binomial regression tests will be employed to explore the influence of being a constitutionally secular country on both the frequency and casualties associated with religious terror attacks. Before proceeding to the statistical tests, descriptive statistics for the variables within the dataset is presented in Table \ref{tab:descriptive}.
+
+\FloatBarrier
+
+```{r descriptive, results='asis', warning=FALSE, echo=FALSE, message=FALSE, fig.pos="H"}
+library(readxl)
+library(tidyverse)
+library(MASS)
+library(stargazer)
+
+setwd("/Users/muhammetozkaraca/Desktop/PhD Application Package/Writing-Sample/supplemental-files/datasets")
+
+descriptive_stats <- read_excel("untidy_final.xlsx")
+
+descriptive_stats <- descriptive_stats %>%
+  mutate(secular_or_not = case_when(secular_constitution == 0 ~ 1,
+                                    secular_constitution == 1 ~ 0,
+                                    secular_constitution == 2 ~ 0,
+                                    secular_constitution == NA ~ NA))
+
+names(descriptive_stats)[12] <- "secular"
+names(descriptive_stats)[4]  <- "statesupport"
+names(descriptive_stats)[5]  <- "restrictiononrp"
+names(descriptive_stats)[6]  <- "military"
+names(descriptive_stats)[7]  <- "gdppercapita"
+names(descriptive_stats)[8]  <- "sfi"
+names(descriptive_stats)[9]  <- "polity"
+names(descriptive_stats)[10] <- "numberofattacks"
+names(descriptive_stats)[11] <- "totalkilled"
+
+descriptive_stats <- as.data.frame(descriptive_stats)
+
+
+descriptive_stats <- descriptive_stats %>% 
+  mutate(hostility = case_when (statesupport == 0 ~ 1,
+                                statesupport == 1 ~ 1,
+                                statesupport == 2 ~ 0,
+                                statesupport == 3 ~ 0,
+                                statesupport == 4 ~ 0,
+                                statesupport == 5 ~ 0,
+                                statesupport == 6 ~ 0,
+                                statesupport == 7 ~ 0,
+                                statesupport == 8 ~ 0,
+                                statesupport == 9 ~ 0,
+                                statesupport == 10 ~ 0,
+                                statesupport == 11 ~ 0,
+                                statesupport == 12 ~ 0, 
+                                statesupport == 13 ~ 0)) %>%
+  dplyr::select(secular, restrictiononrp, military, gdppercapita, sfi, polity, 
+                numberofattacks, totalkilled, hostility)
+
+
+# descriptive_stats_na_omitted <- na.omit(descriptive_stats)
+
+
+
+summary <- stargazer(descriptive_stats, type = "latex", digits = 2,
+                     label = "tab:descriptive", title = "Descriptive Statistics", 
+                     header = FALSE, single.row = TRUE, no.space = TRUE, font.size = "small",
+                     covariate.labels=c("Secular Constitutions", "Restriction on RP", 
+                                        "Military Spending", "GDP per capita", 
+                                        "State Fragility Index", "Polity Score", 
+                                        "Number of Attacks", "Total Killed People",
+                                        "Specific State Hostility"),
+                     column.sep.width = "1pt",
+                     summary.stat = c("N", "mean", "sd","min","max","p25","p75"),
+                     notes = "\\textit{Source}: The author's own calculation based on several datasets. See text.")
+
+```
+
+\FloatBarrier
+
+$\qquad$ In Table \ref{tab:descriptive}, it is worth noting that the sample size is large enough, thereby allowing for the assumption of normality - a fundamental requirement for Analysis of Variance (ANOVA) tests to test whether there is a statistically significant difference between groups. However, alongside normality, the equality of variances across groups is also a prerequisite for ANOVA tests. If this assumption is not met, operating a Welch-ANOVA test is necessitated as an appropriate alternative to standard ANOVA.
+
+$\qquad$ To that end, the results of Levene's test are documented in Table \@ref(tab:levenetest1), with the objective of ascertaining whether the foundational premise of homogeneity of variances can be reasonably upheld between the different groups in the dataset. This analysis ensures that subsequent statistical assessments are conducted with robustness, whether employing ANOVA or opting for the Welch-ANOVA approach is convenient.
+
+\FloatBarrier
+```{r levene_test, results='asis', warning=FALSE, echo=FALSE, message=FALSE, fig.pos="H"}
+library(readxl)
+library(tidyverse)
+library(MASS)
+library(stargazer)
+library(car)
+
+setwd("/Users/muhammetozkaraca/Desktop/PhD Application Package/Writing-Sample/supplemental-files/datasets")
+
+descriptive_stats <- read_excel("untidy_final.xlsx")
+
+descriptive_stats <- descriptive_stats %>%
+  mutate(secular_or_not = case_when(secular_constitution == 0 ~ 1,
+                                    secular_constitution == 1 ~ 0,
+                                    secular_constitution == 2 ~ 0,
+                                    secular_constitution == NA ~ NA))
+
+names(descriptive_stats)[12] <- "secular"
+names(descriptive_stats)[4]  <- "statesupport"
+names(descriptive_stats)[5]  <- "restrictiononrp"
+names(descriptive_stats)[6]  <- "military"
+names(descriptive_stats)[7]  <- "gdppercapita"
+names(descriptive_stats)[8]  <- "sfi"
+names(descriptive_stats)[9]  <- "polity"
+names(descriptive_stats)[10] <- "numberofattacks"
+names(descriptive_stats)[11] <- "totalkilled"
+
+descriptive_stats <- as.data.frame(descriptive_stats)
+
+
+descriptive_stats <- descriptive_stats %>% 
+  mutate(hostility = case_when (statesupport == 0 ~ 1,
+                                statesupport == 1 ~ 1,
+                                statesupport == 2 ~ 0,
+                                statesupport == 3 ~ 0,
+                                statesupport == 4 ~ 0,
+                                statesupport == 5 ~ 0,
+                                statesupport == 6 ~ 0,
+                                statesupport == 7 ~ 0,
+                                statesupport == 8 ~ 0,
+                                statesupport == 9 ~ 0,
+                                statesupport == 10 ~ 0,
+                                statesupport == 11 ~ 0,
+                                statesupport == 12 ~ 0, 
+                                statesupport == 13 ~ 0)) %>%
+  dplyr::select(secular, statesupport, restrictiononrp, military, gdppercapita, sfi, 
+                polity, numberofattacks, totalkilled, hostility) %>%
+  mutate(secular = as.factor(secular))
+  
+
+summary <- stargazer(leveneTest(totalkilled ~ secular, data = descriptive_stats), type = "latex", digits = 2,
+                     label = "tab:levenetest1", title = "Levene's Test for Annual Number of Killed People", header = FALSE,
+                     single.row = TRUE, no.space = TRUE, font.size = "small",
+                     column.sep.width = "1pt",
+                     notes = "\\textit{Source}: The author's own calculation based on several datasets. See text.")
+
+summary_2 <- stargazer(leveneTest(numberofattacks ~ secular, data = descriptive_stats), type = "latex", digits = 2,
+                     label = "tab:levenetest1", title = "Levene's Test for Annual Number of Religious Terror Attacks", header = FALSE,
+                     single.row = TRUE, no.space = TRUE, font.size = "small",
+                     column.sep.width = "1pt",
+                     notes = "\\textit{Source}: The author's own calculation based on several datasets. See text.")
+```
+\FloatBarrier
+
+$\qquad$ The results indicate that the *p-value* for the two groups in this study, one being a constitutionally secular country and the other not, is nearly 0 for both the annual number of religious terror attacks and the annual number of casualties in these attacks per country. With such a low *p-value*, we reject the null hypothesis, which assumes homogeneity of variances between these two groups. Therefore, we should use the Welch-ANOVA test to determine if there's a statistically significant effect related to a country's constitutional secularism on the occurrence of religious terrorism.
+
+```{r anove_test, results='asis', warning=FALSE, echo=FALSE, message=FALSE, fig.pos="H"}
+library(readxl)
+library(tidyverse)
+library(MASS)
+library(stargazer)
+library(car)
+
+setwd("/Users/muhammetozkaraca/Desktop/PhD Application Package/Writing-Sample/supplemental-files/datasets")
+
+descriptive_stats <- read_excel("untidy_final.xlsx")
+
+descriptive_stats <- descriptive_stats %>%
+  mutate(secular_or_not = case_when(secular_constitution == 0 ~ 1,
+                                    secular_constitution == 1 ~ 0,
+                                    secular_constitution == 2 ~ 0,
+                                    secular_constitution == NA ~ NA))
+
+names(descriptive_stats)[12] <- "secular"
+names(descriptive_stats)[4]  <- "statesupport"
+names(descriptive_stats)[5]  <- "restrictiononrp"
+names(descriptive_stats)[6]  <- "military"
+names(descriptive_stats)[7]  <- "gdppercapita"
+names(descriptive_stats)[8]  <- "sfi"
+names(descriptive_stats)[9]  <- "polity"
+names(descriptive_stats)[10] <- "numberofattacks"
+names(descriptive_stats)[11] <- "totalkilled"
+
+descriptive_stats <- as.data.frame(descriptive_stats)
+
+
+descriptive_stats <- descriptive_stats %>% 
+  mutate(hostility = case_when (statesupport == 0 ~ 1,
+                                statesupport == 1 ~ 1,
+                                statesupport == 2 ~ 0,
+                                statesupport == 3 ~ 0,
+                                statesupport == 4 ~ 0,
+                                statesupport == 5 ~ 0,
+                                statesupport == 6 ~ 0,
+                                statesupport == 7 ~ 0,
+                                statesupport == 8 ~ 0,
+                                statesupport == 9 ~ 0,
+                                statesupport == 10 ~ 0,
+                                statesupport == 11 ~ 0,
+                                statesupport == 12 ~ 0, 
+                                statesupport == 13 ~ 0)) %>%
+  dplyr::select(secular, statesupport, restrictiononrp, military, gdppercapita, sfi, 
+                polity, numberofattacks, totalkilled, hostility) %>%
+  mutate(secular = as.factor(secular))
+
+welch_anova_1 <- oneway.test(totalkilled ~ secular, data = descriptive_stats, var.equal = FALSE)
+welch_anova_2 <- oneway.test(numberofattacks ~ secular, data = descriptive_stats, var.equal = FALSE)
+
+
+
+```
+
+$\qquad$ Based on the Welch-ANOVA test results, the *p-value* is around 0 for two tests measuring the impact of being a constitutionally secular country on religious terror attacks and associated casualties. Hence, we reject the null hypothesis, confirming a statistically significant difference between countries that are constitutionally secular and those that are not concerning religious terrorism. At this stage, we proceed with a negative binomial regression test to ascertain the direction of this observed relationship and account for potential confounding variables mentioned earlier.
+
+$\qquad$ The choice of a negative binomial regression test is driven by significant variances in the dataset. Furthermore, as illustrated in Figure \@ref(fig:rt-groups) and Figure  \@ref(fig:rt-attacks), the clustering of attacks in specific regions may introduce over-dispersion, making negative binomial regression analysis the preferred option to address potential bias. The results of these regression analyses are detailed in Tables \ref{tab:regression1} and \ref{tab:regression2}, providing a comprehensive assessment of the statistical relationship and its associated controlling factors.
+
+```{=tex}
+\newpage
+\FloatBarrier
+```
+```{r regression1, results='asis', warning=FALSE,echo=FALSE,message=FALSE, fig.pos="H"}
+library(visdat)
+library(naniar)
+library(simputation)
+library(tidyverse)
+library(MASS)
+library(stargazer)
+library(readxl)
+
+
+descriptive_stats <- read_excel("/Users/muhammetozkaraca/Desktop/PhD Application Package/Writing-Sample/supplemental-files/datasets/untidy_final.xlsx")
+
+descriptive_stats <- descriptive_stats %>%
+  mutate(secular_or_not = case_when(secular_constitution == 0 ~ 1,
+                                    secular_constitution == 1 ~ 0,
+                                    secular_constitution == 2 ~ 0,
+                                    secular_constitution == NA ~ NA))
+
+names(descriptive_stats)[12] <- "secular"
+names(descriptive_stats)[4]  <- "statesupport"
+names(descriptive_stats)[5]  <- "restrictiononrp"
+names(descriptive_stats)[6]  <- "military"
+names(descriptive_stats)[7]  <- "gdppercapita"
+names(descriptive_stats)[8]  <- "sfi"
+names(descriptive_stats)[9]  <- "polity"
+names(descriptive_stats)[10] <- "numberofattacks"
+names(descriptive_stats)[11] <- "totalkilled"
+
+regression_data <- descriptive_stats %>% 
+  mutate(hostility = case_when (statesupport == 0 ~ 1,
+                                statesupport == 1 ~ 1,
+                                statesupport == 2 ~ 0,
+                                statesupport == 3 ~ 0,
+                                statesupport == 4 ~ 0,
+                                statesupport == 5 ~ 0,
+                                statesupport == 6 ~ 0,
+                                statesupport == 7 ~ 0,
+                                statesupport == 8 ~ 0,
+                                statesupport == 9 ~ 0,
+                                statesupport == 10 ~ 0,
+                                statesupport == 11 ~ 0,
+                                statesupport == 12 ~ 0, 
+                                statesupport == 13 ~ 0)) %>%
+  dplyr::select(secular, restrictiononrp, military, gdppercapita, sfi, 
+                polity, numberofattacks, totalkilled, hostility) %>%
+  mutate(gdppercapita = log(gdppercapita),
+         secular = as.factor(secular))
+
+# str(regression_data)
+
+
+# regression_data <- regression_data %>%
+#  as_tibble()
+
+# regression_data %>% vis_dat()
+# regression_data %>% vis_miss()
+# regression_data %>% gg_miss_upset()
+
+# regression_data <- regression_data %>%
+#  as_data_frame()
+
+
+
+m1 <- glm.nb(formula = numberofattacks ~ secular + polity + sfi + gdppercapita + military, 
+             data = regression_data, na.action = na.omit)
+
+m2 <- glm.nb(formula = numberofattacks ~  restrictiononrp + polity + sfi + gdppercapita + military, 
+             data = regression_data, na.action = na.omit)
+
+m3 <- glm.nb(formula = totalkilled ~ secular + polity + sfi + gdppercapita + military, 
+             data = regression_data, na.action = na.omit)
+
+m4 <- glm.nb(formula = totalkilled ~  restrictiononrp + polity + sfi + gdppercapita + military, 
+             data = regression_data, na.action = na.omit)
+
+
+summary <- stargazer(m1, m2, m3, m4, label = "tab:regression1", 
+                      dep.var.labels=c("Number of Attacks","Number of Killed People"),
+                      covariate.labels=c("Constitutionally Secular Countries", 
+                                         "Restriction on Religious Parties",
+                                         "Polity V",
+                                         "State Fragility Index (1995-2014)",
+                                         "Log(GDP per capita)", 
+                                         "Military Spending"),
+                      title = "Regression Results", omit.stat=c("LL","ser","f"), type = "latex",
+                      header = FALSE, no.space = TRUE, float.env = "sidewaystable",
+                      notes = "\\textit{Source}: The author's own calculation based on several datasets. See text.")
+```
+
+```{=tex}
+\FloatBarrier
+\newpage
+```
+```{=tex}
+\newpage
+\FloatBarrier
+```
+```{r regression2, results='asis', warning=FALSE,echo=FALSE,message=FALSE, fig.pos="H"}
+library(readxl)
+library(tidyverse)
+library(MASS)
+library(stargazer)
+
+library(readxl)
+library(tidyverse)
+library(MASS)
+library(stargazer)
+
+muslimmajority <- read_excel("/Users/muhammetozkaraca/Desktop/PhD Application Package/Writing-Sample/supplemental-files/datasets/muslimmajority.xlsx")
+
+
+muslimmajority <- muslimmajority %>%
+  mutate(secular_or_not = case_when(secular_constitution == 0 ~ 1,
+                                    secular_constitution == 1 ~ 0,
+                                    secular_constitution == 2 ~ 0,
+                                    secular_constitution == NA ~ NA))
+
+
+names(muslimmajority)[3] <- "secular"
+names(muslimmajority)[4] <- "statesupport"
+names(muslimmajority)[5] <- "restrictiononrp"
+names(muslimmajority)[6] <- "numberofattacks"
+names(muslimmajority)[7] <- "totalkilled"
+names(muslimmajority)[8] <- "military"
+names(muslimmajority)[9] <- "literacy"
+names(muslimmajority)[10] <- "gdppercapita"
+
+
+muslimmajority <- muslimmajority %>%
+  as.data.frame(muslimmajority) %>%
+  mutate(gdppercapita = log(gdppercapita),
+         secular = as.factor(secular),
+         hostility = case_when (statesupport == 0 ~ 1,
+                                statesupport == 1 ~ 1,
+                                statesupport == 2 ~ 0,
+                                statesupport == 3 ~ 0,
+                                statesupport == 4 ~ 0,
+                                statesupport == 5 ~ 0,
+                                statesupport == 6 ~ 0,
+                                statesupport == 7 ~ 0,
+                                statesupport == 8 ~ 0,
+                                statesupport == 9 ~ 0,
+                                statesupport == 10 ~ 0,
+                                statesupport == 11 ~ 0,
+                                statesupport == 12 ~ 0,
+                                statesupport == 13 ~ 0),
+         hostility = as.factor(hostility))
+
+
+muslim1 <- glm.nb (formula = numberofattacks ~ secular + polity + sfi + gdppercapita + military, 
+                   data = muslimmajority, na.action = na.omit)
+
+muslim2 <- glm.nb (formula = numberofattacks ~  restrictiononrp + polity + sfi + gdppercapita + military, 
+                   data = muslimmajority, na.action = na.omit)
+
+muslim3 <- glm.nb (formula = totalkilled ~ secular + polity + sfi + gdppercapita + military, 
+                   data = muslimmajority, na.action = na.omit)
+
+muslim4 <- glm.nb (formula = totalkilled ~  restrictiononrp + polity + sfi + gdppercapita + military, 
+                   data = muslimmajority, na.action = na.omit)
+
+
+stargazer(muslim1, muslim2, muslim3, muslim4,
+          label = "tab:regression2",
+          dep.var.labels = c("Number of Attacks","Number of Killed People"),
+          covariate.labels = c("Constitutionally Secular Countries", 
+                               "Restriction on Religious Parties",
+                               "Polity V", 
+                               "State Fragility Index (1995-2014)",
+                               "Log(GDP per capita)", 
+                               "Military Spending"),
+          title = "Regression Results for Muslim Majority Countries", 
+          omit.stat=c("LL","ser","f"),
+          type = "latex",
+          header = FALSE,
+          no.space = TRUE,
+          float.env = "sidewaystable",
+          notes = "\\textit{Source}: The author's own calculation based on several datasets. See text.")
+
+```
+
+```{=tex}
+\FloatBarrier
+\newpage
+```
+$\qquad$ The results yield intriguing conclusions. Beginning with Table \ref{tab:regression1}, which presents findings for all states, we observe that countries recognizing one or more religions in their constitution tend to experience a higher incidence of religious terror attacks compared to countries that do not officially recognize any religion in their constitutions. This pattern is similarly reflected in the number of fatalities resulting from these attacks. Constitutionally secular countries tend to have fewer casualties as a result of such attacks when compared to countries that officially recognize one or more religions.
+
+$\qquad$ Additionally, the variable representing *restrictions on religious parties* also exhibits a statistically significant effect on the occurrence of religious terrorism. Countries that impose restrictions on religious parties within their constitutions tend to experience a higher incidence of faith-based terrorism, both in terms of the frequency of similar attacks and the number of casualties resulting from them. These findings substantiate the initial hypothesis that constitutionally secular countries display greater resilience to religious terrorism
+
+$\qquad$ These results also bring other important insights. It is not surprising that countries with high scores on the state fragility index tend to experience more religious terrorism, as it's likely that faith-based terror groups find it easier to operate in such unstable contexts. However, it is crucial to note that autocratic states experience more religious terrorism than democratic ones. Additionally, the findings indicate that countries with high levels of GDP per capita also face a higher incidence of religious terror attacks. Further researches and elaborations are necessary to understand the precise causes and mechanisms behind why religious terror groups target autocratic states and states with high GDP per capita.
+
+$\qquad$ Interesting conclusions can be drawn from the empirical findings of this analysis, particularly when considering tests conducted exclusively for Muslim-majority nations. In contrast to the results obtained for all countries, in the context of Muslim-majority countries, being a constitutionally secular state appears to have a negative impact on the occurrence of religious terrorism. Additionally, the specific variable measuring restrictions on religious parties is found to be statistically non-significant, which is another unexpected outcome. However, consistent with the results in Table\ref{tab:regression1}, countries with higher levels of state fragility and autocracy experience a greater incidence of religious terrorism in the context of Muslim-majority states. Finally, it is crucial to note that the variable related to military spending in both tests is not statistically significant
+
+$\qquad$ In summary, the empirical tests conducted in this study make several noteworthy contributions to the existing literature. It is primarily demonstrated that constitutionally secular countries experience fewer incidents of religious terrorism and suffer fewer human losses. Conversely, countries officially recognizing one or more religions tend to encounter more religious terrorism and experience higher human casualties, which supports the central hypothesis of this study. However, these results appear to contradict the general pattern in the case of Muslim-majority countries.
+
+$\qquad$ Additionally, these findings open the door to further research. First, a more in-depth investigation is required to understand why the results for Muslim-majority countries deviate from the overall trend. While this aspect warrants additional inquiry, it is also evident that countries with higher GDP per capita and autocratic tendencies are more prone to religious terrorism. This phenomenon also demands further examination to elucidate why religious terror groups target economically developed countries, as well as autocratic states.
+
+```{=tex}
+\newpage
+\setstretch{1}
+```
+# References
+
+::: {#refs}
+:::
